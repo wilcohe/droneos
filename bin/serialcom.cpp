@@ -1,6 +1,7 @@
 #include <string.h>
 #include <iostream>
 #include <cstdlib>
+#include <vector>
 #include <wiringPi.h>
 #include <wiringSerial.h>
 
@@ -21,6 +22,17 @@ public static string get_data(int fd){
 	return pose;
 }
 
+public static vector<float> parse_data(string& pose){
+	vector<float> pose_vec;
+	string xyz = "";
+	for (string::iterator it=pose.begin(); it < pose.end(); ++it){
+		if (*it == ',' || *it == '\n'){
+			pose_vec.push_back(std::stof(xyz));
+			string xyz = ""; 
+		}
+	}
+	return pose_vec;
+}
 
 
 public static int connect(){
