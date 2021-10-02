@@ -6,10 +6,6 @@
 #include <wiringSerial.h>
 
 public static string get_data(int fd){
-	for (;;){
-		putchar(serialGetchar(fd)); 
-		fflush(stdout);
-	}
 	serialFlush(fd);
 	char b;
 	string pose;
