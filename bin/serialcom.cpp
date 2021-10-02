@@ -5,7 +5,7 @@
 #include <wiringPi.h>
 #include <wiringSerial.h>
 
-public static string get_data(int fd){
+string get_data(int fd){
 	serialFlush(fd);
 	char b;
 	string pose;
@@ -18,7 +18,7 @@ public static string get_data(int fd){
 	return pose;
 }
 
-public static vector<float> parse_data(string& pose){
+vector<float> parse_data(string& pose){
 	vector<float> pose_vec;
 	string xyz = "";
 	for (string::iterator it=pose.begin(); it < pose.end(); ++it){
@@ -31,7 +31,7 @@ public static vector<float> parse_data(string& pose){
 }
 
 
-public static int connect(){
+int connect(){
 
 	const char* ard_prt;
         if (const char* port_test = std::getenv("ARDUINO_PORT")){
