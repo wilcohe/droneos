@@ -10,7 +10,7 @@ fi
 mkdir ~/motor-code
 cd ~/motor-code
 
-curl  https://raw.githubusercontent.com/wilcohe/droneos/main/arduino/motor_control.ino > motor-code.ino
+curl  https://raw.githubusercontent.com/wilcohe/droneos/main/motor-code/motor-code.ino > motor-code.ino
 
 cd ~
 

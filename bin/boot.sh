@@ -1,5 +1,13 @@
 #!/bin/bash
 
+internet=$(ping google.com -c 1 | grep "1 packets received")
+if [[ ${#internet} -gt 8 ]]
+then
+	export INTERNET=TRUE
+else 
+	export INTERNET=FALSE
+fi
+
 board=$(arduino-cli board list | awk '/arduino/')
 IFS=' ' read -r -a  array <<< $board
 
