@@ -1,6 +1,13 @@
 #!/bin/bash
 
 # if connected
+if [[ printenv INTERNET ]] 
+then 
+	arduino-cli compile -b "$board" --output-dir ~/motor-code/ ~/motor-code/motor-code.ino
+
+	arduino-cli upload -b "$board" -p "$port" ~/motor-code
+else
+
 
 if [[ -d "~/motor-code/" ]]
 then
@@ -55,6 +62,4 @@ arduino-cli compile -b "$board" --output-dir ~/motor-code/ ~/motor-code/motor-co
 
 arduino-cli upload -b "$board" -p "$port" ~/motor-code
 
-# else
-
-
+fi
