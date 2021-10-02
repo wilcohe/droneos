@@ -1,7 +1,7 @@
 #!/bin/bash
 
 internet=$(ping google.com -c 1 | grep "1 packets received")
-if [[ ${#internet} -gt 8 ]]
+if [[ ${#internet} -gt 0 ]]
 then
 	export INTERNET=TRUE
 else 
