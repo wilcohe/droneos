@@ -1,30 +1,31 @@
-#include <string.h>
+#include <string>
 #include <iostream>
 #include <cstdlib>
 #include <vector>
 #include <wiringPi.h>
 #include <wiringSerial.h>
+#include "serialcom.h"
 
-string get_data(int fd){
+std::string get_data(int fd){
 	serialFlush(fd);
 	char b;
-	string pose;
-	while(serialGetChar(fd) != '\n');
+	std::string pose;
+	while(serialGetchar(fd) != '\n');
 	do{
-		b = serialGetChar(fd);
+		b = serialGetchar(fd);
 		pose += b;
-	}while (b != '\n);
+	}while (b != '\n');
 
 	return pose;
 }
 
-vector<float> parse_data(string& pose){
-	vector<float> pose_vec;
-	string xyz = "";
-	for (string::iterator it=pose.begin(); it < pose.end(); ++it){
+std::vector<float> parse_data(std::string& pose){
+	std::vector<float> pose_vec;
+	std::string xyz = "";
+	for (std::string::iterator it=pose.begin(); it < pose.end(); ++it){
 		if (*it == ',' || *it == '\n'){
 			pose_vec.push_back(std::stof(xyz));
-			string xyz = ""; 
+			std::string xyz = ""; 
 		}
 	}
 	return pose_vec;
